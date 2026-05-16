@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VerseShare • Original Poems</title>
+    <meta name="description" content="Share, celebrate, and discover original poems with a modern, elegant community space.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="topbar">
+            <div class="brand">
+                <span class="logo">V</span>
+                <div>
+                    <p class="eyebrow">VerseShare</p>
+                    <h1>Original poems for every voice</h1>
+                </div>
+            </div>
+            <nav class="nav-links" aria-label="Primary navigation">
+                <a href="#create">Post a Poem</a>
+                <a href="#feed">Feed</a>
+                <a href="#about">About</a>
+            </nav>
+            <div class="header-actions">
+                <button id="adminToggle" class="button button-secondary" type="button" aria-label="Open admin side">Admin side</button>
+                <button id="themeToggle" class="button button-ghost theme-toggle" type="button" aria-label="Toggle light mode">Light mode</button>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="hero-copy">
+                    <p class="eyebrow">Create. Share. Inspire.</p>
+                    <h2>Bring your poetry into a calm, modern space made for voices that matter.</h2>
+                    <p class="hero-description">Add your original poem, browse beautiful posts, and share with other readers. VerseShare is a lightweight static community for poetry discovery.</p>
+                    <div class="hero-cta">
+                        <a class="button button-primary" href="#create">Start writing</a>
+                        <button class="button button-secondary" id="loadSampleBtn" type="button">Load sample poem</button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="glass-card highlight-card">
+                        <span class="tag">Featured</span>
+                        <p class="preview-title">Moonlight on paper</p>
+                        <p class="preview-copy">Soft lines fall like midnight, ink tracing the hush between breaths.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="features grid" id="about">
+                <article class="feature-card">
+                    <h3>Styled for poets</h3>
+                    <p>Minimal interface, lush typography, and soothing layouts let every poem shine without distraction.</p>
+                </article>
+                <article class="feature-card">
+                    <h3>Instant sharing</h3>
+                    <p>Copy poem text or use the share tools to invite friends to read and celebrate your work.</p>
+                </article>
+                <article class="feature-card">
+                    <h3>Safe local saving</h3>
+                    <p>Poems are stored securely in your browser with localStorage so your feed stays personal and private.</p>
+                </article>
+            </section>
+
+            <section id="adminPanel" class="admin-panel hidden" aria-label="Admin review panel">
+                <div class="section-header">
+                    <div>
+                        <p class="eyebrow">Admin</p>
+                        <h2>Review pending poems</h2>
+                    </div>
+                    <p class="small-copy">Approve or reject submissions before they appear to your poetry community.</p>
+                </div>
+                <div id="adminContent"></div>
+            </section>
+
+            <section class="create-section user-side" id="create">
+                <div class="section-header">
+                    <div>
+                        <p class="eyebrow">Post a Poem</p>
+                        <h2>Write your original poem</h2>
+                    </div>
+                    <p class="small-copy">Fill in the title, author, and your poem. Then publish it to your personal feed instantly.</p>
+                </div>
+
+                <form id="poemForm" class="poem-form" autocomplete="off">
+                    <div class="field-grid">
+                        <label class="field-label">
+                            <span>Title</span>
+                            <input id="poemTitle" name="poemTitle" type="text" placeholder="A quiet evening" required>
+                        </label>
+                        <label class="field-label">
+                            <span>Author</span>
+                            <input id="poemAuthor" name="poemAuthor" type="text" placeholder="Your name or pen name" required>
+                        </label>
+                    </div>
+
+                    <label class="field-label textarea-label">
+                        <span>Poem</span>
+                        <textarea id="poemContent" name="poemContent" rows="8" placeholder="Type your lines here..." required></textarea>
+                    </label>
+
+                    <div class="field-grid">
+                        <label class="field-label">
+                            <span>Theme</span>
+                            <input id="poemTheme" name="poemTheme" type="text" placeholder="Nature, love, night…">
+                        </label>
+                        <label class="field-label">
+                            <span>Tags</span>
+                            <input id="poemTags" name="poemTags" type="text" placeholder="comma-separated" aria-describedby="tagsHelp">
+                        </label>
+                    </div>
+                    <p id="tagsHelp" class="help-text">Example: evening, solitude, memories</p>
+
+                    <div class="form-actions">
+                        <button class="button button-primary" type="submit">Share poem</button>
+                        <button class="button button-ghost" type="button" id="clearBtn">Clear</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="feed-section user-side" id="feed">
+                <div class="section-header">
+                    <div>
+                        <p class="eyebrow">Feed</p>
+                        <h2>Recent poems</h2>
+                    </div>
+                    <p class="small-copy">Your poems appear here immediately. Refreshing keeps the content in place, and you can always revisit your collection later.</p>
+                </div>
+                <div id="feedList" class="feed-list" aria-live="polite"></div>
+            </section>
+        </main>
+
+        <footer class="page-footer">
+            <p>Designed for poets, built to keep your voice clear and elegant.</p>
+        </footer>
+    </div>
+
+    <div id="toast" class="toast" aria-live="assertive" role="status"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
